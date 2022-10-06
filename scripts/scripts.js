@@ -10,20 +10,38 @@ const nameInput = popup.querySelector(".popup__text_name");
 const descriptionProfile = document.querySelector(".profile__description");
 const descriptionInput = popup.querySelector(".popup__text_description");
 const popupSaveBtn = popup.querySelector(".popup__save-button");
+const likeNoneBtn = document.querySelector(".elements__like-button");
+const likeActiveBtn = document.querySelector(".elements__like-button_active");
 
-openPopupBtn.addEventListener("click", function(){
+/*открытие попапа*/
+function open(){
     popup.classList.add(popup_active);
-});
+    nameInput.value = nameProfile.textContent;
+    descriptionInput.value = descriptionProfile.textContent;
+}
+openPopupBtn.addEventListener("click", open);
 
-popup.addEventListener("click", function(event){
+/*закрытие попапа на иконку и оверлей*/
+function close(event){
     if(!popupContainer.contains(event.target) || event.target === popupCloseBtn) {
         popup.classList.remove(popup_active);
-    }
-});
+    };
+    
+}
+popup.addEventListener("click", close);
 
-popupForm.addEventListener("submit", function(event){
+/*сохранение данных по иконке*/
+function submit(event) {
     event.preventDefault();
     nameProfile.textContent = nameInput.value;
     descriptionProfile.textContent = descriptionInput.value;
     popup.classList.remove(popup_active);
-})
+}
+popupForm.addEventListener("submit", submit);
+
+/*закраска лайка*/
+function likeBtn (event) {
+    event.target.classList.toggle('elements__like-button_active');
+}
+likeNoneBtn.addEventListener("click", likeBtn);
+
