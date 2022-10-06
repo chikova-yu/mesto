@@ -10,3 +10,21 @@
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
 }
+
+@media screen and (max-width: 899px) {
+    .page {
+        max-width: 750px;
+    }
+}
+
+@media screen and (max-width: 799px) {
+    .page {
+        max-width: 650px;
+    }
+}
+
+@media screen and (max-width: 699px) {
+    .page {
+        max-width: 282px;
+    }
+}

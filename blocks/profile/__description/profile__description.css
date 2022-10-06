@@ -7,3 +7,17 @@
     margin: 0;
     padding-top: 16px;
 }
+
+@media screen and (max-width: 799px) {
+    .profile__description {
+        line-height: 17px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 699px) {
+    .profile__description {
+        padding: 14px 0 36px;
+        text-align: center;
+    }
+}

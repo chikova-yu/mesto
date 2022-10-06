@@ -9,7 +9,6 @@ const nameProfile = document.querySelector(".profile__name");
 const nameInput = popup.querySelector(".popup__text_name");
 const descriptionProfile = document.querySelector(".profile__description");
 const descriptionInput = popup.querySelector(".popup__text_description");
-const likeNoneBtn = document.querySelector(".elements__like-button");
 
 /*открытие попапа*/
 function open(){
@@ -35,9 +34,3 @@ function submit(event) {
     popup.classList.remove(popup_active);
 }
 popupForm.addEventListener("submit", submit);
-
-/*закраска лайка*/
-function likeBtn (event) {
-    event.target.classList.toggle('elements__like-button_active');
-}
-likeNoneBtn.addEventListener("click", likeBtn);
