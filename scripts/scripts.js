@@ -6,9 +6,9 @@ const popupContainer = popup.querySelector(".popup__container");
 const popupCloseBtn = popup.querySelector(".popup__close-button");
 const popupForm = popup.querySelector(".popup__form");
 const nameProfile = document.querySelector(".profile__name");
-const nameInput = popup.querySelector(".popup__text_name");
+const nameInput = popup.querySelector(".popup__text_type_name");
 const descriptionProfile = document.querySelector(".profile__description");
-const descriptionInput = popup.querySelector(".popup__text_description");
+const descriptionInput = popup.querySelector(".popup__text_type_description");
 
 /*открытие попапа*/
 function open(){
