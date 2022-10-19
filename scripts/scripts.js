@@ -34,3 +34,47 @@ function submit(event) {
     popup.classList.remove(popup_active);
 }
 popupForm.addEventListener("submit", submit);
+
+const elementsContainer = document.querySelector('.elements');
+const cardAddForm = modalAddForm.querySelector('.popup__form');
+const cardTemplate = document.querySelector('#template-card');
+
+function createElement (data) {
+    const cardElement = cardTemplate.content.cloneNode(true);
+  
+    const cardText = cardElement.querySelector('.elements__text');
+    cardText.textContent = data.name;
+    
+    const cardImage = cardElement.querySelector('.elements__image');
+    cardImage.alt = data.name;
+    cardImage.src = data.link;
+  
+    const removeButton = cardElement.querySelector('.elements__remove-button');
+    removeButton.addEventListener('click', deleteCardHandler);
+  
+    const likeButton = cardElement.querySelector('.elements__like-button');
+    likeButton.addEventListener('click',likeCardHandler);
+    
+    cardImage.addEventListener('click', () => {
+      openPopupWithImage(data);
+    });
+  
+    modalFigurePopupCloseButton.addEventListener('click', () => closeModalWindow(modalFigurePopup));
+    
+    return cardElement;  
+  };
+
+  function openPopupWithImage (data) {
+    const popupCaption = document.querySelector('.popup__caption');
+    popupCaption.textContent = data.name;
+  
+    const popupImage = document.querySelector('.popup__image');
+    popupImage.src = data.link;
+    popupImage.alt = data.name;
+  
+    openModalWindow(modalFigurePopup);
+  }
+  
+  function deleteCardHandler (evt) {
+    evt.target.closest('.elements__card').remove();
+  }

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
     <script defer src="./scripts/scripts.js"></script>
+    <script defer src="./scripts/initialCards.js"></script>
 </head>
 <body class="page">
     <header class="header">
@@ -36,74 +37,7 @@
         </section>
 
         <section class="elements">
-            <ul class="elements__container">
-                <li class="elements__card">
-                    <img 
-                        class="elements__image" 
-                        src="./images/karachaevsk.png" 
-                        alt="Карачаевск"
-                    />
-                    <div class="elements__text-container">
-                        <h2 class="elements__text">Карачаевск</h2>
-                        <button class="elements__like-button" type="button"></button>
-                    </div>
-                </li>
-                <li class="elements__card">
-                    <img 
-                        class="elements__image" 
-                        src="./images/elbrus.png" 
-                        alt="Эльбрус"
-                    />
-                    <div class="elements__text-container">
-                        <h2 class="elements__text">Гора Эльбрус</h2>
-                        <button class="elements__like-button" type="button"></button>
-                    </div>
-                </li>
-                <li class="elements__card">
-                    <img 
-                        class="elements__image" 
-                        src="./images/dombay.png" 
-                        alt="Домбай"
-                    />
-                    <div class="elements__text-container">
-                        <h2 class="elements__text">Домбай</h2>
-                        <button class="elements__like-button" type="button"></button>
-                    </div>
-                </li>
-                <li class="elements__card">
-                    <img 
-                        class="elements__image" 
-                        src="./images/elbrus.png" 
-                        alt="Эльбрус"
-                    />
-                    <div class="elements__text-container">
-                        <h2 class="elements__text">Гора Эльбрус</h2>
-                        <button class="elements__like-button" type="button"></button>
-                    </div>
-                </li>
-                <li class="elements__card">
-                    <img 
-                        class="elements__image" 
-                        src="./images/dombay.png" 
-                        alt="Домбай"
-                    />
-                    <div class="elements__text-container">
-                        <h2 class="elements__text">Домбай</h2>
-                        <button class="elements__like-button" type="button"></button>
-                    </div>
-                </li>
-                <li class="elements__card">
-                    <img 
-                        class="elements__image" 
-                        src="./images/karachaevsk.png" 
-                        alt="Карачаево-Черкессия"
-                    />
-                    <div class="elements__text-container">
-                        <h2 class="elements__text">Карачаево-Черкессия</h2>
-                        <button class="elements__like-button" type="button"></button>
-                    </div>
-                </li>
-            </ul>
+            <ul class="elements__container"></ul>
         </section>
     </main>
 
@@ -122,5 +56,16 @@
             </form>
         </div>
     </section>
+
+    <template id="tempalate-card">
+        <li class="elements__card">
+            <img src="" class="elements__image">
+            <div class="elements__text-container">
+                <h2 class="elements__text"></h2>
+                <button class="elements__like-button" type="button"></button>
+            </div>
+            <button class="elements__remove-button"></button>
+        </li>
+    </template>
 </body>
 </html>
