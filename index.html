@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
     <script defer src="./scripts/scripts.js"></script>
-    <script defer src="./scripts/initialCards.js"></script>
 </head>
 <body class="page">
     <header class="header">
@@ -29,7 +28,7 @@
             <div class="profile__info">
                 <div class="profile__name-container">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button class="profile__edin-button" type="button"></button>
+                    <button class="profile__edit-button" type="button"></button>
                 </div>
                 <p class="profile__description">Исследователь океана</p>
             </div>
@@ -45,10 +44,21 @@
         <p class="footer__copyrights">&copy; 2022 Mesto Russia</p>
     </footer>
 
-    <section class="popup">
-        <div class="popup__container">
-            <form class="popup__form" name="popup">
-                <button class="popup__close-button" type="button"></button>
+    <template id="tempalate-card">
+        <li class="elements__card">
+            <button class="elements__remove-button" type="button"></button>
+            <img src="" class="elements__image">
+            <div class="elements__text-container">
+                <h2 class="elements__text"></h2>
+                <button class="elements__like-button" type="button"></button>
+            </div>
+        </li>
+    </template>
+
+    <section class="popup popup_type_edit">
+        <div class="popup__container popup__container_type_edit">
+            <form class="popup__form" name="popup" id="form-edit">
+                <button class="popup__close-button" type="button" id="close-button-edit"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <input class="popup__text popup__text_type_name" name="name" type="text" value="Введите имя" required placeholder="Имя">
                 <input class="popup__text popup__text_type_description" name="descritpion" type="text" value="Введите описание" required placeholder="Описание">
@@ -57,15 +67,17 @@
         </div>
     </section>
 
-    <template id="tempalate-card">
-        <li class="elements__card">
-            <img src="" class="elements__image">
-            <div class="elements__text-container">
-                <h2 class="elements__text"></h2>
-                <button class="elements__like-button" type="button"></button>
-            </div>
-            <button class="elements__remove-button"></button>
-        </li>
-    </template>
+    <section class="popup popup_type_add">
+        <div class="popup__container popup__container_type_add">
+            <form class="popup__form" name="popup" id="form-add">
+                <button class="popup__close-button" type="button" id="close-button-add"></button>
+                <h2 class="popup__title">Новое место</h2>
+                <input class="popup__text popup__text_type_loc" name="name" type="text" value="Название" required placeholder="Название">
+                <input class="popup__text popup__text_type_link" name="descritpion" type="text" value="Ссылка на картинку" required placeholder="Ссылка">
+                <button class="popup__save-button" type="submit">Создать</button>
+            </form>
+        </div>
+    </section>
+
 </body>
 </html>
