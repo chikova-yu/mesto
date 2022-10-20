@@ -39,20 +39,20 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-const elementCard = document.querySelector('.elements__container');
-const elementTemplate = document.querySelector('#tempalate-card').content;
+const elementCard = document.querySelector(".elements__container");
+const elementTemplate = document.querySelector("#tempalate-card").content;
 
 /*переменные попапа создания карточки (открыть/закрыть)*/
 const addPopup = document.querySelector(".popup_type_add");
-const addPopupBtn = document.querySelector('.profile__add-button');
-const popupAddContainer = document.querySelector('.popup__container_type_add');
-const popupAddCloseBtn = document.querySelector('#close-button-add');
-const popupAddForm = document.querySelector('#form-add');
+const addPopupBtn = document.querySelector(".profile__add-button");
+const popupAddContainer = document.querySelector(".popup__container_type_add");
+const popupAddCloseBtn = document.querySelector("#close-button-add");
+const popupAddForm = document.querySelector("#form-add");
 
 /*переменные попапа увеличения фотографии*/
-const popupImg = document.querySelector('.popup_type_img');
-const popupImgContainer = document.querySelector('.popup__img-container');
-const popupImgCloseBtn = document.querySelector('#close-button-img');
+const popupImg = document.querySelector(".popup_type_img");
+const popupImgContainer = document.querySelector(".popup__img-container");
+const popupImgCloseBtn = document.querySelector("#close-button-img");
 
 /*открытие попапа редактирования*/
 openEditPopupBtn.addEventListener("click", () => {
@@ -92,23 +92,23 @@ function outputCard(item) {
   elementCard.prepend(elementPlace);
 
   /*кнопка удаления карточки*/
-  const deleteButton = elementPlace.querySelector('.elements__remove-button');
-  deleteButton.addEventListener('click', (evt) => {
-    evt.target.closest('.elements__card').remove();
+  const deleteButton = elementPlace.querySelector(".elements__remove-button");
+  deleteButton.addEventListener("click", (evt) => {
+    evt.target.closest(".elements__card").remove();
   });
 
   /*кнопка лайка*/
-  const likeButton = elementPlace.querySelector('.elements__like-button');
-  likeButton.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('elements__like-button_active');
+  const likeButton = elementPlace.querySelector(".elements__like-button");
+  likeButton.addEventListener("click", (evt) => {
+    evt.target.classList.toggle("elements__like-button_active");
   });
 
   /*открытие попапа фотографии*/
-  elementCardImg.addEventListener('click', () => {
-    const fullCardImg = document.querySelector('.popup__full-photo');
-    const descriptionCardImg = document.querySelector ('.popup__full-photo-description');
-    fullCardImg.setAttribute('src', item.link);
-    fullCardImg.setAttribute('alt', item.name);
+  elementCardImg.addEventListener("click", () => {
+    const fullCardImg = document.querySelector(".popup__full-photo");
+    const descriptionCardImg = document.querySelector (".popup__full-photo-description");
+    fullCardImg.setAttribute("src", item.link);
+    fullCardImg.setAttribute("alt", item.name);
     descriptionCardImg.textContent = item.name;
     popupImg.classList.add(popup_active);
   })
@@ -131,8 +131,8 @@ addPopup.addEventListener("click", (evt) => {
 /*сохранение данных попапа создания карточки по кнопке 'Создать'*/
 popupAddForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
-  const locInput = document.querySelector('.popup__text_type_loc');
-  const linkInput = document.querySelector('.popup__text_type_link');
+  const locInput = document.querySelector(".popup__text_type_loc");
+  const linkInput = document.querySelector(".popup__text_type_link");
   const newName = locInput.value;
   const newLink = linkInput.value;
   outputCard({name: newName, link: newLink});
