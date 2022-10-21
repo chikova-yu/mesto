@@ -8,3 +8,7 @@
     overflow: hidden;
     position: relative;
 }
+
+.elements__card:hover {
+    cursor: pointer;
+}
