@@ -1,11 +1,10 @@
 const POPUP_ACTIVE_CLASS = "popup_active";
 const popup = document.querySelector(".popup");
+const popupCloseBtn = document.querySelectorAll(".popup__close-button");
 
 /*переменные попапа редактирования*/
 const editPopup = document.querySelector(".popup_type_edit");
 const openEditPopupBtn = document.querySelector(".profile__edit-button");
-const popupEditContainer = popup.querySelector(".popup__container_type_edit");
-const popupEditCloseBtn = popup.querySelector("#close-button-edit");
 const popupEditForm = popup.querySelector("#form-edit");
 const nameProfile = document.querySelector(".profile__name");
 const nameInput = popup.querySelector(".popup__text_type_name");
@@ -45,29 +44,33 @@ const elementTemplate = document.querySelector("#tempalate-card").content;
 /*переменные попапа создания карточки (открыть/закрыть)*/
 const addPopup = document.querySelector(".popup_type_add");
 const addPopupBtn = document.querySelector(".profile__add-button");
-const popupAddContainer = document.querySelector(".popup__container_type_add");
-const popupAddCloseBtn = document.querySelector("#close-button-add");
 const popupAddForm = document.querySelector("#form-add");
 const locInput = document.querySelector(".popup__text_type_loc");
 const linkInput = document.querySelector(".popup__text_type_link");
 
 /*переменные попапа увеличения фотографии*/
-const popupImg = document.querySelector(".popup_type_img");
-const popupImgContainer = document.querySelector(".popup__img-container");
-const popupImgCloseBtn = document.querySelector("#close-button-img");
+const imgPopup = document.querySelector(".popup_type_img");
+
+/*открытие любого попапа*/
+function openPopup(popup) {
+  popup.classList.add('popup_active');
+};
+
+/*закрытие любого попапа*/
+function closePopup(popup) {
+  popup.classList.remove('popup_active');
+};
+
+popupCloseBtn.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener("click", () => closePopup(popup));
+});
 
 /*открытие попапа редактирования*/
 openEditPopupBtn.addEventListener("click", () => {
-  editPopup.classList.add('popup_active');
+  openPopup(editPopup);
   nameInput.value = nameProfile.textContent;
   descriptionInput.value = descriptionProfile.textContent;
-});
-
-/*закрытие попапа редактирования на иконку и оверлей*/
-editPopup.addEventListener("click", (event) => {
-  if(!popupEditContainer.contains(event.target) || event.target === popupEditCloseBtn) {
-      editPopup.classList.remove('popup_active');
-  };
 });
 
 /*сохранение данных попапа редактирования по кнопке 'Сохранить'*/
@@ -75,7 +78,7 @@ popupEditForm.addEventListener("submit", (event) => {
   event.preventDefault();
   nameProfile.textContent = nameInput.value;
   descriptionProfile.textContent = descriptionInput.value;
-  editPopup.classList.remove('popup_active');
+  closePopup(editPopup);
 });
 
 /*появление шести карточек из коробки на странице*/
@@ -114,7 +117,7 @@ function createCard(name, link) {
     fullCardImg.setAttribute("src", link);
     fullCardImg.setAttribute("alt", name);
     descriptionCardImg.textContent = name;
-    popupImg.classList.add('popup_active');
+    openPopup(imgPopup);
   })
 
   return elementPlace;
@@ -122,14 +125,7 @@ function createCard(name, link) {
 
 /*открытие попапа создания карточки*/
 addPopupBtn.addEventListener ("click", () => {
-  addPopup.classList.add('popup_active');
-});
-
-/*закрытие попапа создания карточки на иконку и оверлей*/
-addPopup.addEventListener("click", (evt) => {
-  if(!popupAddContainer.contains(evt.target) || evt.target === popupAddCloseBtn) {
-    addPopup.classList.remove('popup_active');
-  };
+  openPopup(addPopup);
 });
 
 /*сохранение данных попапа создания карточки по кнопке 'Создать'*/
@@ -138,13 +134,6 @@ popupAddForm.addEventListener("submit", (evt) => {
   const newName = locInput.value;
   const newLink = linkInput.value;
   renderCard(containerCard, createCard(newName, newLink));
-  addPopup.classList.remove('popup_active');
+  closePopup(addPopup);
   evt.target.reset();
-});
-
-/*закрытие попапа фотографии*/
-popupImg.addEventListener("click", (event) => {
-  if(!popupImgContainer.contains(event.target) || event.target === popupImgCloseBtn) {
-      popupImg.classList.remove('popup_active');
-  };
 });
