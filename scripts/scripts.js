@@ -1,15 +1,14 @@
 const POPUP_ACTIVE_CLASS = "popup_active";
-const popup = document.querySelector(".popup");
-const popupCloseBtn = document.querySelectorAll(".popup__close-button");
+const popupCloseBtns = document.querySelectorAll(".popup__close-button");
 
 /*переменные попапа редактирования*/
 const editPopup = document.querySelector(".popup_type_edit");
 const openEditPopupBtn = document.querySelector(".profile__edit-button");
-const popupEditForm = popup.querySelector("#form-edit");
+const popupEditForm = editPopup.querySelector("#form-edit");
 const nameProfile = document.querySelector(".profile__name");
-const nameInput = popup.querySelector(".popup__text_type_name");
+const nameInput = editPopup.querySelector(".popup__text_type_name");
 const descriptionProfile = document.querySelector(".profile__description");
-const descriptionInput = popup.querySelector(".popup__text_type_description");
+const descriptionInput = editPopup.querySelector(".popup__text_type_description");
 
 /*переменные для новой страницы*/
 const initialCards = [
@@ -38,15 +37,15 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-const containerCard = document.querySelector(".elements__container");
+const cardsContainer = document.querySelector(".elements__container");
 const elementTemplate = document.querySelector("#tempalate-card").content;
 
 /*переменные попапа создания карточки (открыть/закрыть)*/
 const addPopup = document.querySelector(".popup_type_add");
 const addPopupBtn = document.querySelector(".profile__add-button");
 const popupAddForm = document.querySelector("#form-add");
-const locInput = document.querySelector(".popup__text_type_loc");
-const linkInput = document.querySelector(".popup__text_type_link");
+const locInput = addPopup.querySelector(".popup__text_type_loc");
+const linkInput = addPopup.querySelector(".popup__text_type_link");
 
 /*переменные попапа увеличения фотографии*/
 const imgPopup = document.querySelector(".popup_type_img");
@@ -61,7 +60,7 @@ function closePopup(popup) {
   popup.classList.remove('popup_active');
 };
 
-popupCloseBtn.forEach((button) => {
+popupCloseBtns.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener("click", () => closePopup(popup));
 });
@@ -83,11 +82,11 @@ popupEditForm.addEventListener("submit", (event) => {
 
 /*появление шести карточек из коробки на странице*/
 initialCards.forEach((elementPlace) =>
-  renderCard(containerCard, createCard(elementPlace.name, elementPlace.link))
+  renderCard(cardsContainer, createCard(elementPlace.name, elementPlace.link))
 );
 
-function renderCard (containerCard, elementPlace){
-  containerCard.prepend(elementPlace);
+function renderCard (cardsContainer, elementPlace){
+  cardsContainer.prepend(elementPlace);
 };
 
 function createCard(name, link) {
@@ -133,7 +132,7 @@ popupAddForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const newName = locInput.value;
   const newLink = linkInput.value;
-  renderCard(containerCard, createCard(newName, newLink));
+  renderCard(cardsContainer, createCard(newName, newLink));
   closePopup(addPopup);
   evt.target.reset();
 });
