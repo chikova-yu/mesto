@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
     <script defer src="./scripts/scripts.js"></script>
+    <script defer src="./scripts/validate.js"></script>
 </head>
 <body class="page">
     <header class="header">
@@ -57,11 +58,13 @@
 
     <section class="popup popup_type_edit">
         <div class="popup__container">
-            <form class="popup__form" name="popup" id="form-edit">
+            <form class="popup__form" name="popup" id="form-edit" novalidate>
                 <button class="popup__close-button" type="button" aria-label="Close"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input class="popup__text popup__text_type_name" name="name" type="text" required placeholder="Введите имя">
-                <input class="popup__text popup__text_type_description" name="descritpion" type="text" required placeholder="Введите описание">
+                <input class="popup__text popup__text_type_name" name="name" type="text" placeholder="Введите имя" minlength="2" maxlength="40" required>
+                <span class="popup__error input-error-name"></span>
+                <input class="popup__text popup__text_type_description" name="descritpion" type="text"  placeholder="Введите описание" minlength="2" maxlength="200" required>
+                <span class="popup__error input-error-descritpion"></span>
                 <button class="popup__save-button" type="submit">Сохранить</button>
             </form>
         </div>
@@ -69,11 +72,13 @@
 
     <section class="popup popup_type_add">
         <div class="popup__container">
-            <form class="popup__form" name="popup" id="form-add">
+            <form class="popup__form" name="popup" id="form-add" novalidate>
                 <button class="popup__close-button" type="button" aria-label="Close"></button>
                 <h2 class="popup__title">Новое место</h2>
-                <input class="popup__text popup__text_type_loc" name="name" type="text" required placeholder="Название">
-                <input class="popup__text popup__text_type_link" name="descritpion" type="url" required placeholder="Ссылка на картинку">
+                <input class="popup__text popup__text_type_loc" name="name" type="text" placeholder="Название" minlength="2" maxlength="30" required>
+                <span class="popup__error input-error-place"></span>
+                <input class="popup__text popup__text_type_link" name="descritpion" type="url" placeholder="Ссылка на картинку" required>
+                <span class="popup__error input-error-link"></span>
                 <button class="popup__save-button" type="submit">Создать</button>
             </form>
         </div>

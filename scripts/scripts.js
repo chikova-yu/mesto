@@ -53,17 +53,38 @@ const imgPopup = document.querySelector(".popup_type_img");
 /*открытие любого попапа*/
 function openPopup(popup) {
   popup.classList.add('popup_active');
+  document.addEventListener('keydown', pressEsc);
 };
 
 /*закрытие любого попапа*/
 function closePopup(popup) {
   popup.classList.remove('popup_active');
+  document.removeEventListener('keydown', pressEsc);
 };
 
 popupCloseBtns.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener("click", () => closePopup(popup));
 });
+
+//Функция закрытия попапов по клику на оверлей
+const clickOverlay = (evt) => {
+  if (evt.target.classList.contains('popup_active')) {
+    closePopup(evt.target);
+  };
+};
+
+editPopup.addEventListener('click', clickOverlay);
+addPopup.addEventListener('click', clickOverlay);
+imgPopup.addEventListener('click', clickOverlay);
+
+//Функция закрытия попаов по нажатию на Esc
+const pressEsc = (evt) => {
+  if (evt.key === 'Escape') {
+    const modalOpened = document.querySelector('.popup_active');
+    closePopup(modalOpened);
+  };
+};
 
 /*открытие попапа редактирования*/
 openEditPopupBtn.addEventListener("click", () => {
