@@ -67,7 +67,7 @@ popupCloseBtns.forEach((button) => {
   button.addEventListener("click", () => closePopup(popup));
 });
 
-//Функция закрытия попапов по клику на оверлей
+//закрытие попапов по клику на оверлей
 const clickOverlay = (evt) => {
   if (evt.target.classList.contains('popup_active')) {
     closePopup(evt.target);
@@ -78,7 +78,7 @@ editPopup.addEventListener('click', clickOverlay);
 addPopup.addEventListener('click', clickOverlay);
 imgPopup.addEventListener('click', clickOverlay);
 
-//Функция закрытия попаов по нажатию на Esc
+//закрытие попаов по нажатию на Esc
 const pressEsc = (evt) => {
   if (evt.key === 'Escape') {
     const modalOpened = document.querySelector('.popup_active');
