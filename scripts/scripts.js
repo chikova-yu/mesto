@@ -1,4 +1,3 @@
-const POPUP_ACTIVE_CLASS = "popup_active";
 const popupCloseBtns = document.querySelectorAll(".popup__close-button");
 
 /*переменные попапа редактирования*/
