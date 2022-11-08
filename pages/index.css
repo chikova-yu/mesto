@@ -38,3 +38,4 @@
 @import url(../blocks/popup/__full-photo/popup__full-photo.css);
 @import url(../blocks/popup/__full-photo-description/popup__full-photo-description.css);
 @import url(../blocks/popup/__error/popup__error.css);
+@import url(../blocks/popup/__error/_visible/popup__error_visible.css);

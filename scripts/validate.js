@@ -13,7 +13,7 @@ const hideInputError = (config, errorElement, inputElement) => {
 };
 
 //проверяет валидацию
-const checkInputValidity = (config, formElement, inputElement) => {
+const toggleInputErrorState = (config, formElement, inputElement) => {
     const errorElement = formElement.querySelector(`.input-error-${inputElement.name}`);
     if(inputElement.validity.valid) {
         hideInputError(config, errorElement, inputElement);
@@ -26,14 +26,24 @@ const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => !inputElement.validity.valid);
 };
 
-//кнопка активна/неактивна
+//кнопка неактивна
+const disabledBtn = (config, btnElement) => {
+    btnElement.classList.add(config.disabledBtnClass);
+    btnElement.disabled = true;
+};
+
+//кнопка активна
+const enableBtn = (config, btnElement) => {
+    btnElement.classList.remove(config.disabledBtnClass);
+    btnElement.disabled = false;
+}
+
+//переключатель кнопки
 const toggleBtnState = (config, inputList, btnElement) => {
     if (hasInvalidInput(inputList)) {
-        btnElement.classList.add(config.disabledBtnClass);
-        btnElement.disabled = true;
+        disabledBtn(config, btnElement);
     } else {
-        btnElement.classList.remove(config.disabledBtnClass);
-        btnElement.disabled = false;
+        enableBtn(config, btnElement);
     };
 };
 
@@ -46,7 +56,7 @@ const setEventListeners = (config, formElement) => {
 
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
-        checkInputValidity(config, formElement, inputElement);
+        toggleInputErrorState(config, formElement, inputElement);
         toggleBtnState(config, inputList, btnElement);
       });
     });
@@ -55,10 +65,10 @@ const setEventListeners = (config, formElement) => {
 //обработчик форм
 const enableValidation = (config) => {
     const formList = Array.from(document.querySelectorAll(config.formSelector));
-
+    
     formList.forEach((formElement) => {
         setEventListeners(config, formElement);
-      });
+    });
 };
 
 enableValidation({
@@ -67,5 +77,5 @@ enableValidation({
     submitBtnSelector: '.popup__save-button',
     disabledBtnClass: 'popup__save-button_disabled',
     inputErrorClass: 'popup__text_type_error',
-    errorClass: 'popup__error',
+    errorClass: 'popup__error_visible',
 });

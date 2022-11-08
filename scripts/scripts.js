@@ -45,6 +45,7 @@ const addPopupBtn = document.querySelector(".profile__add-button");
 const popupAddForm = document.querySelector("#form-add");
 const locInput = addPopup.querySelector(".popup__text_type_loc");
 const linkInput = addPopup.querySelector(".popup__text_type_link");
+const popupSaveBtn = addPopup.querySelector(".popup__save-button");
 
 /*переменные попапа увеличения фотографии*/
 const imgPopup = document.querySelector(".popup_type_img");
@@ -52,13 +53,13 @@ const imgPopup = document.querySelector(".popup_type_img");
 /*открытие любого попапа*/
 function openPopup(popup) {
   popup.classList.add('popup_active');
-  document.addEventListener('keydown', pressEsc);
+  document.addEventListener('keydown', closePopupByEsc);
 };
 
 /*закрытие любого попапа*/
 function closePopup(popup) {
   popup.classList.remove('popup_active');
-  document.removeEventListener('keydown', pressEsc);
+  document.removeEventListener('keydown', closePopupByEsc);
 };
 
 popupCloseBtns.forEach((button) => {
@@ -67,18 +68,16 @@ popupCloseBtns.forEach((button) => {
 });
 
 //закрытие попапов по клику на оверлей
-const clickOverlay = (evt) => {
+const closePopupByOverlayClick = (evt) => {
   if (evt.target.classList.contains('popup_active')) {
     closePopup(evt.target);
   };
 };
 
-editPopup.addEventListener('click', clickOverlay);
-addPopup.addEventListener('click', clickOverlay);
-imgPopup.addEventListener('click', clickOverlay);
+[editPopup, addPopup, imgPopup].forEach(evt => evt.addEventListener('click', closePopupByOverlayClick))
 
 //закрытие попаов по нажатию на Esc
-const pressEsc = (evt) => {
+const closePopupByEsc = (evt) => {
   if (evt.key === 'Escape') {
     const modalOpened = document.querySelector('.popup_active');
     closePopup(modalOpened);
@@ -153,6 +152,7 @@ popupAddForm.addEventListener("submit", (evt) => {
   const newName = locInput.value;
   const newLink = linkInput.value;
   renderCard(cardsContainer, createCard(newName, newLink));
+  disabledBtn({disabledBtnClass: 'popup__save-button_disabled'}, popupSaveBtn);
   closePopup(addPopup);
   evt.target.reset();
 });
