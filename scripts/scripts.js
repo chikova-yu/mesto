@@ -1,3 +1,6 @@
+import { Card } from "./Card.js";
+//import { FormValidator } from "./FormValidator.js";
+
 const popupCloseBtns = document.querySelectorAll(".popup__close-button");
 
 /*переменные попапа редактирования*/
@@ -37,7 +40,6 @@ const initialCards = [
   }
 ];
 const cardsContainer = document.querySelector(".elements__container");
-const elementTemplate = document.querySelector("#tempalate-card").content;
 
 /*переменные попапа создания карточки (открыть/закрыть)*/
 const addPopup = document.querySelector(".popup_type_add");
@@ -108,38 +110,23 @@ function renderCard (cardsContainer, elementPlace){
   cardsContainer.prepend(elementPlace);
 };
 
+/*создание карточки*/
 function createCard(name, link) {
-  const elementPlace = elementTemplate.querySelector(".elements__card").cloneNode(true);
-  const elementCardTitle = elementPlace.querySelector(".elements__text");
-  elementCardTitle.textContent = name;
-  const elementCardImg = elementPlace.querySelector(".elements__image");
-  elementCardImg.src = link;
-  elementCardImg.alt = name;
-
-  /*кнопка удаления карточки*/
-  const deleteButton = elementPlace.querySelector(".elements__remove-button");
-  deleteButton.addEventListener("click", (evt) => {
-    elementPlace.remove();
-  });
-
-  /*кнопка лайка*/
-  const likeButton = elementPlace.querySelector(".elements__like-button");
-  likeButton.addEventListener("click", (evt) => {
-    evt.target.classList.toggle("elements__like-button_active");
-  });
-
-  /*открытие попапа фотографии*/
-  elementCardImg.addEventListener("click", () => {
-    const fullCardImg = document.querySelector(".popup__full-photo");
-    const descriptionCardImg = document.querySelector (".popup__full-photo-description");
-    fullCardImg.setAttribute("src", link);
-    fullCardImg.setAttribute("alt", name);
-    descriptionCardImg.textContent = name;
-    openPopup(imgPopup);
-  })
+  const card = new Card(name, link, openCardImg);
+  const elementPlace = card.generateCard();
 
   return elementPlace;
 };
+
+/*открытие попапа фотографии*/
+function openCardImg(name, link) {
+  const fullCardImg = document.querySelector(".popup__full-photo");
+  const descriptionCardImg = document.querySelector (".popup__full-photo-description");
+  fullCardImg.setAttribute("src", link);
+  fullCardImg.setAttribute("alt", name);
+  descriptionCardImg.textContent = name;
+  openPopup(imgPopup);
+}
 
 /*открытие попапа создания карточки*/
 addPopupBtn.addEventListener ("click", () => {
