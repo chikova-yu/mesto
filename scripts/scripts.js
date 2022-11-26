@@ -1,6 +1,7 @@
 
 import { Card } from "./Card.js";
 import { selectors, FormValidator } from "./FormValidator.js"; 
+import { initialCards, imgPopup } from "./constants.js";
 
 const popupCloseBtns = document.querySelectorAll(".popup__close-button");
 
@@ -13,33 +14,6 @@ const nameInput = editPopup.querySelector(".popup__text_type_name");
 const descriptionProfile = document.querySelector(".profile__description");
 const descriptionInput = editPopup.querySelector(".popup__text_type_description");
 
-/*переменные для новой страницы*/
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 const cardsContainer = document.querySelector(".elements__container");
 
 /*переменные попапа создания карточки (открыть/закрыть)*/
@@ -50,9 +24,6 @@ const locInput = addPopup.querySelector(".popup__text_type_loc");
 const linkInput = addPopup.querySelector(".popup__text_type_link");
 const popupSaveBtn = addPopup.querySelector(".popup__save-button");
 const disabledSaveBtn = addPopup.querySelector("popup__save-button_disabled");
-
-/*переменные попапа увеличения фотографии*/
-const imgPopup = document.querySelector(".popup_type_img");
 
 /*открытие любого попапа*/
 function openPopup(popup) {
@@ -114,7 +85,7 @@ function renderCard (cardsContainer, elementPlace){
 
 /*создание карточки*/
 function createCard(name, link) {
-  const card = new Card(name, link);
+  const card = new Card(name, link, '#tempalate-card');
   const elementPlace = card.generateCard();
 
   return elementPlace;

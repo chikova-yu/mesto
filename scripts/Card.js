@@ -1,6 +1,9 @@
+import { imgPopup } from "./constants.js";
+
 export class Card {
     
-    cardTemtlate;
+    cardSelector;
+    cardTemplate;
     elementPlace;
     elementCardTitle;
     elementCardImg;
@@ -8,25 +11,27 @@ export class Card {
     link;
     deleteButton;
     likeButton;
-    fullCardImg;
-    descriptionCardImg;
 
-    constructor(name, link) {
+    constructor(name, link, cardSelector) {
         this._name = name;
         this._link = link;
+        this._cardSelector = cardSelector;
+
+        this.fullCardImg = document.querySelector(".popup__full-photo");
+        this.descriptionCardImg = document.querySelector (".popup__full-photo-description");
 
         this._getTemplate();
     }
 
     _getTemplate() {
-        this.cardTemtlate = document
-        .querySelector("#tempalate-card")
+        this.cardTemplate = document
+        .querySelector(this._cardSelector)
         .content
         .querySelector(".elements__card");
     }
 
     generateCard() {
-        this.elementPlace = this.cardTemtlate.cloneNode(true);
+        this.elementPlace = this.cardTemplate.cloneNode(true);
 
         this.elementCardTitle = this.elementPlace.querySelector(".elements__text");
         this.elementCardTitle.textContent = this._name;
@@ -52,12 +57,10 @@ export class Card {
     }
 
     _openCardImg() {
-        this.fullCardImg = document.querySelector(".popup__full-photo");
-        this.descriptionCardImg = document.querySelector (".popup__full-photo-description");
         this.fullCardImg.src = this._link;
         this.fullCardImg.alt= this._name;
         this.descriptionCardImg.textContent = this._name;
-        document.querySelector(".popup_type_img").classList.add('popup_active');
+        imgPopup.classList.add('popup_active');
       }
 
     _setListeners() {
