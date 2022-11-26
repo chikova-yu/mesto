@@ -1,5 +1,6 @@
+
 import { Card } from "./Card.js";
-//import { FormValidator } from "./FormValidator.js";
+import { selectors, FormValidator } from "./FormValidator.js"; 
 
 const popupCloseBtns = document.querySelectorAll(".popup__close-button");
 
@@ -48,6 +49,7 @@ const popupAddForm = document.querySelector("#form-add");
 const locInput = addPopup.querySelector(".popup__text_type_loc");
 const linkInput = addPopup.querySelector(".popup__text_type_link");
 const popupSaveBtn = addPopup.querySelector(".popup__save-button");
+const disabledSaveBtn = addPopup.querySelector("popup__save-button_disabled");
 
 /*переменные попапа увеличения фотографии*/
 const imgPopup = document.querySelector(".popup_type_img");
@@ -112,21 +114,11 @@ function renderCard (cardsContainer, elementPlace){
 
 /*создание карточки*/
 function createCard(name, link) {
-  const card = new Card(name, link, openCardImg);
+  const card = new Card(name, link);
   const elementPlace = card.generateCard();
 
   return elementPlace;
 };
-
-/*открытие попапа фотографии*/
-function openCardImg(name, link) {
-  const fullCardImg = document.querySelector(".popup__full-photo");
-  const descriptionCardImg = document.querySelector (".popup__full-photo-description");
-  fullCardImg.setAttribute("src", link);
-  fullCardImg.setAttribute("alt", name);
-  descriptionCardImg.textContent = name;
-  openPopup(imgPopup);
-}
 
 /*открытие попапа создания карточки*/
 addPopupBtn.addEventListener ("click", () => {
@@ -139,7 +131,13 @@ popupAddForm.addEventListener("submit", (evt) => {
   const newName = locInput.value;
   const newLink = linkInput.value;
   renderCard(cardsContainer, createCard(newName, newLink));
-  disabledBtn({disabledBtnClass: 'popup__save-button_disabled'}, popupSaveBtn);
+  addCardFormValidator.disabledBtn(disabledSaveBtn, popupSaveBtn);
   closePopup(addPopup);
   evt.target.reset();
 });
+
+const editProfileFormValidator = new FormValidator(selectors, editPopup);
+editProfileFormValidator.enableValidation();
+
+const addCardFormValidator = new FormValidator(selectors, addPopup);
+addCardFormValidator.enableValidation();

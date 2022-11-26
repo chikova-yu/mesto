@@ -1,4 +1,5 @@
 export class Card {
+    
     cardTemtlate;
     elementPlace;
     elementCardTitle;
@@ -7,19 +8,21 @@ export class Card {
     link;
     deleteButton;
     likeButton;
-    openCardImg;
+    fullCardImg;
+    descriptionCardImg;
 
-    constructor(name, link, openCardImg) {
+    constructor(name, link) {
         this._name = name;
         this._link = link;
-        this._openCardImg = openCardImg;
+
         this._getTemplate();
     }
 
     _getTemplate() {
         this.cardTemtlate = document
         .querySelector("#tempalate-card")
-        .content.querySelector(".elements__card");
+        .content
+        .querySelector(".elements__card");
     }
 
     generateCard() {
@@ -48,6 +51,15 @@ export class Card {
         this.likeBtn.classList.toggle("elements__like-button_active");
     }
 
+    _openCardImg() {
+        this.fullCardImg = document.querySelector(".popup__full-photo");
+        this.descriptionCardImg = document.querySelector (".popup__full-photo-description");
+        this.fullCardImg.src = this._link;
+        this.fullCardImg.alt= this._name;
+        this.descriptionCardImg.textContent = this._name;
+        document.querySelector(".popup_type_img").classList.add('popup_active');
+      }
+
     _setListeners() {
         this.deleteBtn.addEventListener("click", () => {
             this._removeCard();
@@ -58,7 +70,7 @@ export class Card {
         });
 
         this.elementCardImg.addEventListener("click", () => {
-            this._openCardImg(this._name, this._link);
+            this._openCardImg();
         });
     }
 }
