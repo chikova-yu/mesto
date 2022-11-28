@@ -1,7 +1,7 @@
-
 import { Card } from "./Card.js";
 import { selectors, FormValidator } from "./FormValidator.js"; 
 import { initialCards, imgPopup } from "./constants.js";
+import { openPopup, closePopup } from "./openclosepopup.js";
 
 const popupCloseBtns = document.querySelectorAll(".popup__close-button");
 
@@ -25,18 +25,6 @@ const linkInput = addPopup.querySelector(".popup__text_type_link");
 const popupSaveBtn = addPopup.querySelector(".popup__save-button");
 const disabledSaveBtn = addPopup.querySelector("popup__save-button_disabled");
 
-/*открытие любого попапа*/
-function openPopup(popup) {
-  popup.classList.add('popup_active');
-  document.addEventListener('keydown', closePopupByEsc);
-};
-
-/*закрытие любого попапа*/
-function closePopup(popup) {
-  popup.classList.remove('popup_active');
-  document.removeEventListener('keydown', closePopupByEsc);
-};
-
 popupCloseBtns.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener("click", () => closePopup(popup));
@@ -51,19 +39,12 @@ const closePopupByOverlayClick = (evt) => {
 
 [editPopup, addPopup, imgPopup].forEach(evt => evt.addEventListener('click', closePopupByOverlayClick))
 
-//закрытие попаов по нажатию на Esc
-const closePopupByEsc = (evt) => {
-  if (evt.key === 'Escape') {
-    const modalOpened = document.querySelector('.popup_active');
-    closePopup(modalOpened);
-  };
-};
-
 /*открытие попапа редактирования*/
 openEditPopupBtn.addEventListener("click", () => {
   openPopup(editPopup);
-  nameInput.value = nameProfile.textContent;
-  descriptionInput.value = descriptionProfile.textContent;
+  nameInput.value = nameProfile.textContent.trim();
+  descriptionInput.value = descriptionProfile.textContent.trim();
+  editProfileFormValidator.resetValidation();
 });
 
 /*сохранение данных попапа редактирования по кнопке 'Сохранить'*/
@@ -94,6 +75,7 @@ function createCard(name, link) {
 /*открытие попапа создания карточки*/
 addPopupBtn.addEventListener ("click", () => {
   openPopup(addPopup);
+  addCardFormValidator.resetValidation();
 });
 
 /*сохранение данных попапа создания карточки по кнопке 'Создать'*/

@@ -1,8 +1,8 @@
 import { imgPopup } from "./constants.js";
+import { openPopup } from "./openclosepopup.js";
 
 export class Card {
     
-    cardSelector;
     cardTemplate;
     elementPlace;
     elementCardTitle;
@@ -19,7 +19,7 @@ export class Card {
 
         this.fullCardImg = document.querySelector(".popup__full-photo");
         this.descriptionCardImg = document.querySelector (".popup__full-photo-description");
-
+        
         this._getTemplate();
     }
 
@@ -60,8 +60,8 @@ export class Card {
         this.fullCardImg.src = this._link;
         this.fullCardImg.alt= this._name;
         this.descriptionCardImg.textContent = this._name;
-        imgPopup.classList.add('popup_active');
-      }
+        openPopup(imgPopup);
+    }
 
     _setListeners() {
         this.deleteBtn.addEventListener("click", () => {

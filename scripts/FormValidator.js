@@ -30,6 +30,7 @@ export class FormValidator {
 
     //показывает ошибку
     _showInputError(inputElement) {
+        this._errorElement = this._formElement.querySelector(`.input-error-${inputElement.name}`);
         inputElement.classList.add(this._inputErrorClass);
         this._errorElement.textContent = inputElement.validationMessage;
         this._errorElement.classList.add(this._errorClass);
@@ -37,6 +38,7 @@ export class FormValidator {
 
     //убирает ошибку
     _hideInputError(inputElement) {
+        this._errorElement = this._formElement.querySelector(`.input-error-${inputElement.name}`);
         inputElement.classList.remove(this._inputErrorClass);
         this._errorElement.textContent = '';
         this._errorElement.classList.remove(this._errorClass);
@@ -44,7 +46,6 @@ export class FormValidator {
 
     //проверяет валидацию
     _toggleInputErrorState(inputElement) {
-        this._errorElement = this._formElement.querySelector(`.input-error-${inputElement.name}`);
         if(inputElement.validity.valid) {
             this._hideInputError(inputElement);
         } else {
@@ -90,6 +91,14 @@ export class FormValidator {
             });
         });
     };
+
+    resetValidation() {
+        this._toggleBtnState();
+  
+        this._inputList.forEach((inputElement) => {
+          this._hideInputError(inputElement);
+        });
+    }
 
     //обработчик форм
     enableValidation () {
