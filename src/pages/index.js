@@ -54,36 +54,39 @@ const cardList = new Section({
 cardList.renderItems(initialCards);
 
 //открытие фотографии с описанием
-const popupFigure = new PopupWithImage(imgPopup);
+const popupFigure = new PopupWithImage(".popup_type_img");
 popupFigure.setEventListeners();
 
 //добавление карточки
-const popupFormAddCard = new PopupWithForm(addPopup, newValues => {
-  const card = createCard(newValues)
-  cardList.addItem(card)
+const popupFormAddCard = new PopupWithForm(".popup_type_add", newValues => {
+  const card = createCard(newValues);
+  cardList.addItem(card);
+  popupFormAddCard.close();
 });
 popupFormAddCard.setEventListeners();
 
 //редактирование профиля
 const userInfo = new UserInfo({ name: '#profile-name', info: '#profile-description' })
 
-const popupFormEditCard = new PopupWithForm(editPopup, () =>{
-  userInfo.setUserInfo(nameInput, descriptionInput)
-  popupFormEditCard.close()
+const popupFormEditCard = new PopupWithForm(".popup_type_edit", {
+  handleSubmit: (data) => {
+    userInfo.setUserInfo(data);
+    popupFormEditCard.close();
+  }
 });
 popupFormEditCard.setEventListeners();
 
 //слушатели на кнопки
 addPopupBtn.addEventListener('click', () => {
-  popupFormAddCard.open()
-  addCardFormValidator.resetValidation()
+  popupFormAddCard.open();
+  addCardFormValidator.resetValidation();
 });
 
 openEditPopupBtn.addEventListener('click', () => {
-  const user = userInfo.getUserInfo()
-  editProfileFormValidator.resetValidation()
+  const user = userInfo.getUserInfo();
+  editProfileFormValidator.resetValidation();
 
-  nameInput.value = user.name
-  descriptionInput.value = user.info
+  nameInput.value = user.name;
+  descriptionInput.value = user.info;
   popupFormEditCard.open()
 });
