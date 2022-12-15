@@ -32,6 +32,13 @@ const cardsContainer = document.querySelector(".elements__container");
 const addPopup = document.querySelector(".popup_type_add");
 const addPopupBtn = document.querySelector(".profile__add-button");
 const imgPopup = document.querySelector(".popup_type_img");
+const nameSelector = ".profile__name";
+const infoSelector = ".profile__description";
+const popupWithImg = ".popup_type_img";
+const imgSelector = ".popup__full-photo";
+const captionSelector = "popup__full-photo-description";
+const popupForm = document.querySelector('.popup__form');
+const cardAddForm = popupForm.querySelector('.popup__form')
 
 export {
   initialCards,
@@ -42,5 +49,12 @@ export {
   cardsContainer,
   addPopup,
   addPopupBtn,
-  imgPopup
+  imgPopup,
+  nameSelector,
+  infoSelector,
+  popupWithImg,
+  imgSelector,
+  captionSelector,
+  popupForm,
+  cardAddForm
 }

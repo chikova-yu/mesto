@@ -8,12 +8,6 @@ export const selectors = {
 };
 
 export class FormValidator {
-
-    formElement;
-    errorElement;
-    inputElement;
-    inputList;
-
     constructor(config, formElement) {
         this._formElement = formElement;
 
@@ -96,7 +90,7 @@ export class FormValidator {
         this._toggleBtnState();
   
         this._inputList.forEach((inputElement) => {
-          this._hideInputError(inputElement);
+            this._hideInputError(inputElement);
         });
     }
 
