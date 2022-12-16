@@ -1,13 +1,4 @@
-export const selectors = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__text',
-    submitBtnSelector: '.popup__save-button',
-    disabledBtnClass: 'popup__save-button_disabled',
-    inputErrorClass: 'popup__text_type_error',
-    errorClass: 'popup__error_visible',
-};
-
-export class FormValidator {
+export default class FormValidator {
     constructor(config, formElement) {
         this._formElement = formElement;
 
@@ -92,11 +83,18 @@ export class FormValidator {
         this._inputList.forEach((inputElement) => {
             this._hideInputError(inputElement);
         });
-    }
+
+        this._formElement.addEventListener('submit', () => {
+            if (this._hasInvalidInput()) {
+              this.disabledBtn();
+            }
+          });
+    };
 
     //обработчик форм
     enableValidation () {
         this._setEventListeners();
+        this.resetValidation();
     };
 
 }
