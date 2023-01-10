@@ -12,6 +12,8 @@ import PopupWithForm from "../components/PopupWithForm.js";
 
 import UserInfo from "../components/UserInfo.js";
 
+import Api from '../components/Api.js';
+
 import { 
   initialCards, 
   openEditPopupBtn, 
@@ -21,6 +23,14 @@ import {
   addPopupBtn,
 } 
 from "../utils/constants.js";
+
+const api = new Api({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-56',
+  headers: {
+    authorization: 'eee6f7ec-0406-4c31-a568-3116ef8194de',
+    'Content-Type': 'application/json'
+  }
+});
 
 /*создание карточки*/
 const createCard = (item) => {
