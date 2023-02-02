@@ -51,24 +51,24 @@ export default class Api {
         .then(this._checkResponse)
     }
 
-    deleteCard(cardId){
-        return fetch(this._url + `/cards/${cardId}`, {
+    deleteCard(id){
+        return fetch(this._url + `/cards/${id}`, {
           method: 'DELETE',
           headers: this._headers
         })
         .then(this._checkResponse)
     }
 
-    likeCard(cardId){
-        return fetch(this._url + `/cards/${cardId}/likes`, {
+    likeCard(id){
+        return fetch(this._url + `/cards/${id}/likes`, {
             method: 'PUT',
             headers: this._headers
         })
         .then(this._checkResponse)
     }
 
-    dislikeCard(cardId){
-        return fetch(this._url + `/cards/${cardId}/likes`, {
+    dislikeCard(id){
+        return fetch(this._url + `/cards/${id}/likes`, {
             method: 'DELETE',
             headers: this._headers
         })
