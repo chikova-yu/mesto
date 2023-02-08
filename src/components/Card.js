@@ -1,5 +1,5 @@
 export default class Card {
-    constructor({ data, handleConfirmDelete, handleLikeClick, handleCardClick }, cardSelector, api) {
+    constructor({ data, handleConfirmDelete, handleLikeClick, handleCardClick }, cardSelector) {
         this._name = data.name;
         this._link = data.link;
         this._likes = data.likes;
@@ -32,7 +32,7 @@ export default class Card {
     }
 
     //создание карточки
-    view() {
+    renderCard() {
         this.elementCardTitle.textContent = this._name;
         this.elementCardImg.src = this._link;
         this.elementCardImg.alt = this._name;
@@ -41,7 +41,6 @@ export default class Card {
 
         this._setListeners();
 
-        return this.cardTemplate;
     }
 
     _updateLikesView() {
@@ -71,7 +70,7 @@ export default class Card {
 
     id() {
         return this._id;
-      }
+    }
 
     _setListeners() {
         this.deleteBtn.addEventListener("click", () => {

@@ -55,7 +55,7 @@ popupConfirmDelete.setEventListeners();
 const createCard = (cardData) => {
   const card = new Card( 
     {
-      data: { ...cardData, currentUserId: userId},
+      data: { ...cardData, currentUserId: userId },
 
       handleCardClick: () => popupFigure.open(cardData),
 
