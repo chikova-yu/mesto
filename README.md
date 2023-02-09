@@ -23,7 +23,10 @@
 - адаптирован код.
 
 **В пятом спринте** реализовано:
-- созданы классы Popup, PopupWithForm, PopupWithImage, Section, UserInfo, отредоктирован класс Card согласно ООП.
+- созданы классы Popup, PopupWithForm, PopupWithImage, Section, UserInfo, отредактирован класс Card согласно ООП.
+
+**В шестом спринте** реализовано:
+- работа с АПИ.
 
 **В проекте используются:**
 - HTML (семантические теги, HTML-мнемоника);
@@ -35,11 +38,5 @@
 **Планы доработки:**
 - сделать сайт более адаптивным;
 - оптимизировать код JavaScript.
-
-[Ссылка на макет в Figma 1 (4) спринт](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-
-[Ссылка на макет в Figma 2 (5) спринт](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=50160%3A347)
-
-[Ссылка на макет в Figma 3 (6) спринт](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)
 
 [Ссылка на GitHub Pages](https://yulyachi.github.io/mesto/)
