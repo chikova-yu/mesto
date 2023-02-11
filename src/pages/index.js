@@ -42,9 +42,7 @@ Promise.all([api.getInfoProfile(), api.getInitialCards()])
     userInfo.setUserInfo(user);
     cardList.renderItems(сards);
   })
-  .catch((err) => {
-    console.log(err);
-  }); 
+  .catch((err) => console.log(err)); 
 
 /*создание карточки*/
 const createCard = (data) => {
