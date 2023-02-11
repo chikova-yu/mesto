@@ -167,7 +167,7 @@ openEditPopupBtn.addEventListener('click', () => {
 });
 
 //валидация форм
-const selectors = (config) => {
+const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
 
   formList.forEach((formElement) => {
@@ -176,7 +176,7 @@ const selectors = (config) => {
   });
 };
 
-selectors({
+enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__text',
   submitBtnSelector: '.popup__save-button',
