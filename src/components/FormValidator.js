@@ -66,7 +66,9 @@ export default class FormValidator {
     };
 
     //обработчик полей формы
-    _setEventListeners () {        
+    _setEventListeners () {  
+        this._toggleBtnState();
+
         this._inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._toggleInputErrorState(inputElement);
